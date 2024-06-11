@@ -1,4 +1,9 @@
--- pripojit sa do DB cez einstein usera
+-- ULOHA pre VSETKYCH: pripojit sa do DB cez einstein usera
+
+-- ULOHA pre LEKTORA --> zmenit port LISTENERA na DB restart listenera
+
+-- ULOHA pre VSETKYCH: pripojit sa do DB cez einstein usera
+
 
 -- https://www.databasestar.com/oracle-sys_context/
 select sys_context('USERENV','DB_NAME') from dual;
