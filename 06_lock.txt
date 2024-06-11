@@ -1,8 +1,10 @@
 LOCK
 -------
 -- connect as LEKTOR01
-select * from LEKTOR01.T_UCASTNICI;
-create table LEKTOR01.T_UCASTNICI as select * from LEKTOR01.T_UCASTNICI_BCK;
+@05_create_table_zoznam.txt
+
+select * from LEKTOR01.UCASTNICI;
+create table LEKTOR01.ZOZNAM as select * from LEKTOR01.ZOZNAM;
 
     S1: update LEKTOR01.T_UCASTNICI set coce = 'CC0908' where id=12 ;
 
