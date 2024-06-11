@@ -1,0 +1,86 @@
+## https://dbaora.com/modify-sqlplus-prompt-in-oracle-database/
+set sqlprompt "_user'@'_connect_identifier'> '"
+
+## https://chartio.com/resources/tutorials/oracle-user-privileges--how-to-show-all-privileges-for-a-user/
+
+-- USER_ROLE_PRIVS 
+----------------------------------------------------
+SQL> select granted_role from user_role_privs;
+
+CONNECT
+R_DELETE_T_UCASTNICI
+R_DROP_ANY_TAB
+R_SELECT_T_UCASTNICI
+
+
+-- ROLE_TAB_PRIVILEGES
+----------------------------------------------------
+col ROLE for a20
+col OWNER for a20
+col TABLE_NAME for a20
+set lines 150
+select ROLE,OWNER,TABLE_NAME,PRIVILEGE from role_tab_privs where ROLE like 'R_DELETE_T_UCASTNICI';
+-- select ROLE,OWNER,TABLE_NAME,PRIVILEGE from role_tab_privs;
+
+ROLE                 OWNER                TABLE_NAME           PRIVILEGE
+-------------------- -------------------- -------------------- ----------------------------------------
+R_DELETE_T_UCASTNICI LEKTOR01             T_UCASTNICI          DELETE
+R_SELECT_T_UCASTNICI LEKTOR01             T_UCASTNICI          SELECT
+
+
+
+-- ROLE_TAB_PRIVILEGES
+----------------------------------------------------
+select ROLE,PRIVILEGE from ROLE_SYS_PRIVS;
+
+ROLE                 PRIVILEGE
+-------------------- ----------------------------------------
+CONNECT              SET CONTAINER
+CONNECT              CREATE SESSION
+R_DROP_ANY_TAB       DROP ANY TABLE
+
+
+
+-- USER_TAB_PRIVS
+----------------------------------------------------
+SQL> select privilege, owner, table_name from user_tab_privs;
+
+PRIVILEGE                                OWNER                TABLE_NAME
+---------------------------------------- -------------------- --------------------
+INSERT                                   LEKTOR01             T_UCASTNICI
+INHERIT PRIVILEGES                       SYS                  MYUSER
+
+
+-- USER_SYS_PRIVS
+----------------------------------------------------
+select privilege from user_sys_privs;
+
+ALTER SESSION
+CREATE TABLE
+
+
+
+-- USER_COL_PRIVS
+----------------------------------------------------
+select privilege from sys.user_col_privs;
+
+
+
+-- TBS QUOTAS
+----------------------------------------------------
+select bytes,max_bytes,tablespace_name from sys.user_ts_quotas;
+
+     BYTES  MAX_BYTES TABLESPACE_NAME
+---------- ---------- ------------------------------
+         0         -1 SYS_USER_1
+
+
+-- USER INFO
+----------------------------------------------------
+col USERNAME for a10
+select USERNAME,ACCOUNT_STATUS,CREATED,PASSWORD_CHANGE_DATE,DEFAULT_TABLESPACE,TEMPORARY_TABLESPACE from user_users;
+
+USERNAME   ACCOUNT_STATUS                   CREATED             PASSWORD_CHANGE_DAT DEFAULT_TABLESPACE             TEMPORARY_TABLESPACE
+---------- -------------------------------- ------------------- ------------------- ------------------------------ ------------------------------
+MYUSER     OPEN                             22.05.2024 12:47:06 22.05.2024 12:47:06 SYS_USER_1                     SYS_TMP_1
+

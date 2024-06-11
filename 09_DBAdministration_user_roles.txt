@@ -1,0 +1,46 @@
+1. SESSION  LEKTOR01(DBA)
+2. Session testuj usera MYUSER po kazdom grante !!
+
+CREATE TABLE LEKTOR01.T_UCASTNICI
+( per_number int NOT NULL,
+  last_name varchar2(50) NOT NULL,
+  first_name varchar2(50) NOT NULL,
+  email varchar2(50),
+  coce varchar2(20)
+);
+
+insert into LEKTOR01.T_UCASTNICI VALUES (12,'Novak','Jan','novak.jan@tel.com','CC0001');
+insert into LEKTOR01.T_UCASTNICI VALUES (35,'Vesely','Peter','vesely.peter@tel.com','CC0035');
+insert into LEKTOR01.T_UCASTNICI VALUES (32,'Ciernik','Jozef',ciernik.jozef@tel.com','CC0014');
+insert into LEKTOR01.T_UCASTNICI VALUES (45,'Nahodny','Milan',nahodny.milan@tel.com','CC0071');
+insert into LEKTOR01.T_UCASTNICI VALUES (556,'Fuzaty','Berty','fuzaty.berty@tel.com','CC0021');
+commit;
+
+create role R_DELETE_T_UCASTNICI;
+grant delete on LEKTOR01.T_UCASTNICI to R_DELETE_T_UCASTNICI;
+create role R_SELECT_T_UCASTNICI;
+grant select on LEKTOR01.T_UCASTNICI to R_SELECT_T_UCASTNICI;
+create role R_DROP_ANY_TAB;
+grant drop any table to R_DROP_ANY_TAB;
+
+create user MYUSER identified by "start123";
+# sqlplus MYUSER/Jablko268efg
+grant connect to MYUSER;
+# sqlplus MYUSER/Jablko268efg
+alter user MYUSER default role connect;
+# create table test(id number);
+grant create table to MYUSER;
+# create table test(id number);
+# insert into test values (1);
+alter user MYUSER quota UNLIMITED on USER;
+# insert into test values (1);
+# commit;
+grant R_DELETE_T_UCASTNICI,R_SELECT_T_UCASTNICI to MYUSER ;
+grant insert on LEKTOR01.T_UCASTNICI to MYUSER;
+grant R_DROP_ANY_TAB to MYUSER;
+grant alter session to MYUSER;
+alter user MYUSER default role CONNECT,R_DELETE_T_UCASTNICI,R_SELECT_T_UCASTNICI,R_DROP_ANY_TAB;
+# select * from LEKTOR01.T_UCASTNICI;
+# logout/login
+# select * from LEKTOR01.T_UCASTNICI;
+
