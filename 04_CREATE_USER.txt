@@ -1,0 +1,5 @@
+create user APPADM identified by "start123";
+grant connect to APPADM;
+grant create table to APPADM;
+desc dba_users
+select username, profile from dba_users;
