@@ -1,5 +1,6 @@
 -- pripojit sa do DB cez einstein usera
 
+-- https://www.databasestar.com/oracle-sys_context/
 select sys_context('USERENV','DB_NAME') from dual;
 
 -- ideme na nakup, tak si vyvorime zoznam nakupovanych veci vo forme tabulky
