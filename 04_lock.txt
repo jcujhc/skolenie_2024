@@ -1,1 +1,14 @@
+LOCK
+-------
+-- connect as LEKTOR01
+select * from LEKTOR01.T_UCASTNICI;
+create table LEKTOR01.T_UCASTNICI as select * from LEKTOR01.T_UCASTNICI_BCK;
 
+    S1: update LEKTOR01.T_UCASTNICI set coce = 'CC0908' where id=12 ;
+
+        S2: update LEKTOR01.T_UCASTNICI set coce = 'CC0908' where id=12 ;
+        S3: delete from LEKTOR01.T_UCASTNICI where id=12 ;
+        S4: delete from LEKTOR01.T_UCASTNICI ;
+
+
+    S5: select SID,SESS_SERIAL#,WAIT_EVENT_TEXT,BLOCKER_SID,BLOCKER_SESS_SERIAL# from V$SESSION_BLOCKERS;
