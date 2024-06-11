@@ -1,0 +1,19 @@
+
+
+1/ vytvorte backup tabulky: T_STUDENTS a T_SKOLENIA
+
+2/ vlozit do tabulky T_STUDENTS seba (desc T_STUDENTS)
+
+3/ zapisat si kurz, teda vlozit zaznam do tabulky T_ZAPISANE_SKOLENIA
+
+4/ Zmenit skolitela v tabulke T_SKOLENIE_SKOLITEL, pre skolenie ED58975 zmente skolitela na 451369
+
+5/ Urobit backup tabulky T_ZOZNAM_SKOLENI (napr: T_ZOZNAM_SKOLENI_BCK_11062024
+
+6/ vymazat skolenie " SAP Integration Technology Overview" z tabulky T_ZOZNAM_SKOLENI
+
+
+
+
+
+
