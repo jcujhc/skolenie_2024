@@ -1,3 +1,4 @@
+-- connect as student to SKOLENIE
 
 -- Zmazanie tabulike na zaciatku scriptu
 drop table T_STUDENTS;
