@@ -1,0 +1,9 @@
+
+1/ Pomocou pohladu "dba_users" zistite
+	- default_tablespace
+	- posledny login do DB
+	- datum poslednej zmeny hesla usera STUDENT01
+
+2/ Pomocou pohladu "dba_tables" zistite kolko tabuliek vytvoril user STUDENT01
+   cize chceme vediet nazvy tabuliek ktorych ownerom je STUDENT01
+
