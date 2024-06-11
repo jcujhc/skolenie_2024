@@ -1,5 +1,6 @@
 -- pripojit sa do DB cez einstein usera
 
+select sys_context('USERENV','DB_NAME') from dual;
 
 -- ideme na nakup, tak si vyvorime zoznam nakupovanych veci vo forme tabulky
 CREATE TABLE t_nakup(
