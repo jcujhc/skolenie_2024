@@ -1,0 +1,81 @@
+-- pripojit sa do DB cez einstein usera
+
+
+-- ideme na nakup, tak si vyvorime zoznam nakupovanych veci vo forme tabulky
+CREATE TABLE t_nakup(
+id number,
+tovar varchar2(100),
+pocet number
+);
+
+/* zoznam:
+1 - pivo 6 ks
+2 - rozky 10 ks
+3 - maslo 3 ks
+4 - mlieko 4 lt 
+5 - ryza 2 kg
+*/
+
+-- VLOZENIE/INSERT DAT DO TABULKY
+INSERT INTO t_nakup VALUES (1,'pivo',6);
+insert into t_nakup values (2,'rozky',10);
+insert into t_nakup values (3,'maslo',3);
+insert into t_nakup values (4,'mlieko',4);
+insert into t_nakup values (5,'ryza',2);
+insert into t_nakup(TOVAR,POCET) values ('sackova polievka',5);
+
+-- VYBER/SELECT DAT Z TABULKY
+set lines 150
+select * from t_nakup;
+select * from t_nakup where id=2;
+SELECT tovar,pocet FROM t_nakup WHERE id=2;
+SELECT tovar,pocet FROM t_nakup WHERE tovar='ryza';
+SELECT * FROM t_nakup ORDER BY ID;
+SELECT * FROM t_nakup ORDER BY TOVAR;
+SELECT * FROM t_nakup ORDER BY POCET;
+SELECT * FROM t_nakup ORDER BY POCET DESC;
+SELECT * FROM t_nakup ORDER BY POCET ASC;
+
+-- ZMENA/UPDATE DAT DO TABULKY
+UPDATE t_nakup SET pocet=20 WHERE tovar='rozky';
+update t_nakup set pocet=2 where id=1;
+update t_nakup set pocet=5 where tovar='ryza';
+
+-- commit;
+insert into t_nakup values (6,'zemiaky',6);
+
+-- ZMAZANIE/DELETE DAT Z TABULKY
+delete from t_nakup where tovar='pivo';
+delete from t_nakup where id=5;
+commit;
+
+delete from t_nakup;
+rollback;
+
+
+-- ZMENA TABULKY, PRIDANIE stlpca 
+ALTER TABLE t_nakup ADD MNOZSTVO varchar(2);
+
+insert into t_nakup(MNOZSTVO) values ('kg');
+rollback;
+
+-- zla syntax: insert into t_nakup(MN) values ('kg') where TOVAR=mlieko;
+
+UPDATE t_nakup SET MNOZSTVO='ks' WHERE tovar='maslo';
+UPDATE t_nakup SET MNOZSTVO='lt' WHERE tovar='mlieko';
+UPDATE t_nakup SET MNOZSTVO='ks',ID=7 WHERE tovar='sackova polievka';
+UPDATE t_nakup SET MNOZSTVO='kg' WHERE tovar='zemiaky';
+UPDATE t_nakup SET MNOZSTVO='ks' WHERE tovar='rozky';
+commit;
+
+DELETE FROM t_nakup where MNOZSTVO='kg' AND TOVAR is NULL;
+DELETE FROM t_nakup where MNOZSTVO='kg' AND ID is NULL;
+commit;
+
+
+-- BACKUP TABULKY
+create table t_nakup_bck as select * from t_nakup;
+
+
+
+
